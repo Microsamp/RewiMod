@@ -57,7 +57,7 @@ public abstract class RewiMod {
 	@Getter private final List<Chatlog> chatlogs = new ArrayList<>();
 
 	@Getter private final String minecraftTitleTextureLocation = "textures/gui/title/minecraft.png";
-	@Getter private final String mainMenuBackgroundLocation = "textures/misc/panorama_3.jpg";
+	@Getter private final String mainMenuBackgroundLocation = "textures/misc/panorama_3.png";
 	@Getter final String mojangCopyrightMessage = "Copyright Mojang AB. Do not distribute!";
 	
 	/**

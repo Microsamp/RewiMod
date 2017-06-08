@@ -18,7 +18,6 @@
  */
 package tv.rewinside.rewimod.core.gui;
 
-import java.awt.FontMetrics;
 import tv.rewinside.rewimod.core.RewiMod;
 import tv.rewinside.rewimod.core.gui.objects.IGuiButton;
 import tv.rewinside.rewimod.core.handlers.IFontRendererObjHandler;
