@@ -197,7 +197,7 @@ public class CoreGuiDrawer {
 		RewiMod.getInstance().getTextureHandler().bindTexture(RewiMod.getInstance().getMinecraftTitleTextureLocation());
 		RewiMod.getInstance().getGlStateManagerHandler().color(1.0F, 1.0F, 1.0F);
 		int i = 274;
-        int j = width / 2 - i / 2;
+		int j = width / 2 - i / 2;
         int k = 30;
 		getGuiHandler().drawTexturedModalRect(gui, j + 0, k + 0, 0, 0, 155, 44);
 		getGuiHandler().drawTexturedModalRect(gui, j + 155, k + 0, 0, 45, 155, 44);

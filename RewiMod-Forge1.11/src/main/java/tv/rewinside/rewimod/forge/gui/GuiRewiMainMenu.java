@@ -28,7 +28,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import tv.rewinside.rewimod.core.RewiMod;
@@ -73,12 +72,12 @@ public class GuiRewiMainMenu extends GuiMainMenu implements IGui {
 
 		//Render forge informations and MCP version?
 		List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings(true));
-        for (int brdline = 0; brdline < brandings.size(); brdline++) {
-            String brd = brandings.get(brdline);
-            if (!Strings.isNullOrEmpty(brd)) {
+		for (int brdline = 0; brdline < brandings.size(); brdline++) {
+			String brd = brandings.get(brdline);
+			if (!Strings.isNullOrEmpty(brd)) {
 				RewiMod.getInstance().getFontRendererObjHandler().drawStringWithShadow(brd, 2, this.height - ( 10 + brdline * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
 			}
-        }
+		}
 
 		ForgeHooksClient.renderMainMenu(this, this.fontRendererObj, this.width, this.height, "");
 
