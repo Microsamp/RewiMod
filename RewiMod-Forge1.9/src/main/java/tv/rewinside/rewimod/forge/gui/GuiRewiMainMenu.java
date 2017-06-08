@@ -18,11 +18,21 @@
  */
 package tv.rewinside.rewimod.forge.gui;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import tv.rewinside.rewimod.core.RewiMod;
+import tv.rewinside.rewimod.core.gui.CoreGuiDrawer;
+import tv.rewinside.rewimod.core.gui.IGui;
 import tv.rewinside.rewimod.core.gui.objects.IGuiButton;
 import tv.rewinside.rewimod.core.util.CoordinateUtil;
 import tv.rewinside.rewimod.core.util.RewiButtonConnectType;
@@ -31,7 +41,7 @@ import tv.rewinside.rewimod.forge.gui.objects.GuiRewiModButton;
 import tv.rewinside.rewimod.forge.gui.objects.GuiTwitterButton;
 import tv.rewinside.rewimod.forge.gui.objects.GuiYoutubeButton;
 
-public class GuiRewiMainMenu extends GuiMainMenu {
+public class GuiRewiMainMenu extends GuiMainMenu implements IGui {
 
 	private final Map<Integer, IGuiButton> buttons = new HashMap<>();
 
@@ -54,6 +64,27 @@ public class GuiRewiMainMenu extends GuiMainMenu {
 	}
 
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		ScaledResolution resolution = new ScaledResolution(this.mc);//TODO: Implement in core
+		CoreGuiDrawer.drawBackgroundImage(this.width, this.height, resolution.getScaledWidth(), resolution.getScaledHeight());
+		CoreGuiDrawer.drawMojangCopyright(this.width, this.height);
+		CoreGuiDrawer.drawMojangLogo(this, this.width);
+
+		//Render forge informations and MCP version?
+		List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings(true));
+        for (int brdline = 0; brdline < brandings.size(); brdline++) {
+            String brd = brandings.get(brdline);
+            if (!Strings.isNullOrEmpty(brd)) {
+				RewiMod.getInstance().getFontRendererObjHandler().drawStringWithShadow(brd, 2, this.height - ( 10 + brdline * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
+			}
+        }
+
+		ForgeHooksClient.renderMainMenu(this, this.fontRendererObj, this.width, this.height, "");
+
+		this.drawButtons(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 
@@ -73,4 +104,14 @@ public class GuiRewiMainMenu extends GuiMainMenu {
 		return btn;
 	}
 
+	private void drawButtons(int mouseX, int mouseY) {
+        for (int i = 0; i < this.buttonList.size(); ++i) {
+            ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
+        }
+
+        for (int i = 0; i < this.labelList.size(); ++i) {
+            ((GuiLabel)this.labelList.get(i)).drawLabel(this.mc, mouseX, mouseY);
+        }
+    }
+	
 }

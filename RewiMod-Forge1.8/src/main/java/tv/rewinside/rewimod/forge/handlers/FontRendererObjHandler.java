@@ -33,4 +33,9 @@ public class FontRendererObjHandler implements IFontRendererObjHandler {
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(text, x, y, color);
 	}
 
+	@Override
+	public int getStringWidth(String text) {
+		return Minecraft.getMinecraft().fontRendererObj.getStringWidth(text);
+	}
+
 }

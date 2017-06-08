@@ -51,4 +51,15 @@ public interface IGuiHandler {
 	 */
 	public void drawModalRectWithCustomSizedTexture(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight);
 
+	/**
+	 * Draws a solid color rectangle with the specified coordinates and color
+	 * 
+	 * @param left
+	 * @param top
+	 * @param right
+	 * @param bottom
+	 * @param color 
+	 */
+	public void drawRect(int left, int top, int right, int bottom, int color);
+
 }

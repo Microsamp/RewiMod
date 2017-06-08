@@ -18,6 +18,7 @@
  */
 package tv.rewinside.rewimod.core.gui;
 
+import java.awt.FontMetrics;
 import tv.rewinside.rewimod.core.RewiMod;
 import tv.rewinside.rewimod.core.gui.objects.IGuiButton;
 import tv.rewinside.rewimod.core.handlers.IFontRendererObjHandler;
@@ -161,6 +162,46 @@ public class CoreGuiDrawer {
 		getGlStateManager().color(isHovered ? .7F : 1.0F, 1.0F, 1.0F);
 
 		drawCustomSizeRect(xPos + 4, yPos + 4, 0, 0, 12, 12);
+	}
+	
+	/**
+	 * Draws the background of the main menu
+	 * 
+	 * @param width the <i>width</i> of the menu
+	 * @param height the <i>height</i> of the menu
+	 * @param scaledWidth the <i>scaled width</i> of the menu
+	 * @param scaledHeight the <i>scaled height</i> of the menu
+	 */
+	public static void drawBackgroundImage(int width, int height, int scaledWidth, int scaledHeight) {
+		//TODO: Scale in core
+		getTextureHandler().bindModTexture(RewiMod.getInstance().getMainMenuBackgroundLocation());
+		getGuiHandler().drawModalRectWithCustomSizedTexture(0, 0, 0, 0, scaledWidth, scaledHeight, scaledWidth, scaledHeight);
+		getGuiHandler().drawRect(0, 0, width, height, 0x400);
+	}
+	
+	/**
+	 * Draws the default mojang copyright text
+	 * 
+	 * @param width the <i>width</i> of the menu
+	 * @param height the <i>height</i> of the menu
+	 */
+	public static void drawMojangCopyright(int width, int height) {
+		getFontRendererObjHandler().drawStringWithShadow(RewiMod.getInstance().getMojangCopyrightMessage(), width - getFontRendererObjHandler().getStringWidth(RewiMod.getInstance().getMojangCopyrightMessage()) - 2, height - 10, -1);
+	}
+	
+	/**
+	 * 
+	 * @param gui The GuiObject that requested the draw
+	 * @param width the <i>width</i> of the menu
+	 */
+	public static void drawMojangLogo(IGui gui, int width) {
+		RewiMod.getInstance().getTextureHandler().bindTexture(RewiMod.getInstance().getMinecraftTitleTextureLocation());
+		RewiMod.getInstance().getGlStateManagerHandler().color(1.0F, 1.0F, 1.0F);
+		int i = 274;
+        int j = width / 2 - i / 2;
+        int k = 30;
+		getGuiHandler().drawTexturedModalRect(gui, j + 0, k + 0, 0, 0, 155, 44);
+		getGuiHandler().drawTexturedModalRect(gui, j + 155, k + 0, 0, 45, 155, 44);
 	}
 
 	/**

@@ -40,4 +40,11 @@ public interface IFontRendererObjHandler {
 	 */
 	public void drawStringWithShadow(String text, int x, int y, int color);
 
+	/**
+     * Returns the width of this string. Equivalent of FontMetrics.stringWidth(String s).
+	 * 
+	 * @param text the text
+	 * @return the width
+	 */
+	public int getStringWidth(String text);
 }

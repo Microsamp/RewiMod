@@ -35,4 +35,9 @@ public class GuiHandler implements IGuiHandler {
 		Gui.drawModalRectWithCustomSizedTexture(x, y, textureX, textureY, width, height, textureWidth, textureHeight);
 	}
 
+	@Override
+	public void drawRect(int left, int top, int right, int bottom, int color) {
+		Gui.drawRect(left, top, right, bottom, color);
+	}
+
 }
